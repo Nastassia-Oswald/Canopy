@@ -1,0 +1,986 @@
+/* ===== src/screens/screens.css ===== */
+/* Layout specific to Tapedeck's screens (not part of the swappable UI kit). */
+
+.showgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: var(--space-4) var(--space-3);
+}
+.showcard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.showcard .art {
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+}
+.showcard:active .art {
+  transform: scale(0.97);
+}
+.showcard-title {
+  font-size: var(--text-s);
+  font-weight: 600;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.showcard-title {
+  font-family: var(--font-label);
+  font-weight: 700;
+}
+.showcard-meta {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+.podhead {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-end;
+  margin: var(--space-2) 0 var(--space-5);
+}
+.podhead .art {
+  border-radius: var(--radius-m);
+}
+.podhead-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.podhead h1 {
+  font-family: var(--font-label);
+  font-weight: 700;
+  letter-spacing: 0;
+  font-size: 24px;
+  line-height: 1.15;
+}
+.podhead p {
+  margin: 0;
+}
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+.linkish {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-align: left;
+}
+.chev {
+  color: var(--ink-3);
+  font-size: 22px;
+  padding: 0 8px;
+}
+.stack-tight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.grouphead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.grouphead h2 {
+  font-family: var(--font-label);
+  font-weight: 700;
+  letter-spacing: 0;
+  font-size: var(--text-m);
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.grouphead .art {
+  border-radius: 6px;
+}
+.inline-form {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-end;
+}
+.inline-form .field {
+  flex: 1;
+  min-width: 0;
+}
+.inline-form .btn {
+  min-height: 46px;
+}
+.editctl {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 0 8px 6px;
+  border-top: 1px dashed var(--line);
+}
+.pad {
+  padding: 4px var(--space-4) var(--space-4);
+  gap: var(--space-3);
+}
+.error {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: var(--radius-s);
+  background: color-mix(in srgb, var(--danger) 12%, transparent);
+  color: var(--danger);
+  font-size: var(--text-s);
+}
+.help {
+  background: var(--surface);
+  border-radius: var(--radius-m);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-s);
+}
+.help summary {
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+}
+.help ol {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.help p {
+  color: var(--ink-2);
+}
+.notes {
+  font-size: var(--text-s);
+  color: var(--ink-2);
+  white-space: pre-line;
+  max-width: 65ch;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- now playing: chunky ---------- */
+/* Order on screen: title block, artwork, times, three big tiles, ruler scrubber, footer.
+   A small chevron in the top-right corner collapses the player back to the mini player. */
+.np {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 440px;
+  width: 100%;
+  margin: 0 auto;
+}
+.np-close {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  z-index: 1;
+}
+.np-close .iconbtn {
+  color: var(--ink-2);
+}
+.np-text {
+  order: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.np-text h2 {
+  order: 0;
+  padding-right: 40px;
+  font-size: 38px;
+  line-height: 0.98;
+}
+.np-text .eyebrow {
+  order: 1;
+  font-size: var(--text-s);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-weight: 400;
+  color: var(--ink-3);
+  text-decoration: none;
+  margin-top: 4px;
+}
+.np-text p {
+  order: 2;
+  margin: 0;
+  font-family: var(--font-label);
+  color: var(--ink-3);
+}
+.np > .art {
+  order: 1;
+  width: min(100%, 40vh) !important;
+  align-self: flex-start;
+  border-radius: var(--radius-m);
+  margin: var(--space-2) 0;
+}
+.scrub {
+  display: contents;
+}
+.scrub-times {
+  order: 2;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-label);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.scrub-times span:last-child {
+  color: var(--ink-3);
+}
+.np-controls {
+  order: 3;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.np-controls .iconbtn {
+  width: 100%;
+  height: 96px;
+  border-radius: var(--radius-m);
+  background: var(--tile);
+  color: var(--ink);
+}
+.np-controls .iconbtn-filled {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.np-controls .iconbtn-badge {
+  transform: translate(-50%, 26px);
+  font-size: 11px;
+  color: var(--ink-2);
+}
+/* ruler: a tick every 8px, taller tick every 40px, played ticks in lilac, needle as thumb */
+.scrub input {
+  order: 4;
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 44px;
+  margin: 0;
+  border-radius: 0;
+  background:
+    repeating-linear-gradient(to right, var(--progress) 0 2px, transparent 2px 40px) left bottom / var(--pct) 22px no-repeat,
+    repeating-linear-gradient(to right, var(--progress) 0 1px, transparent 1px 8px) left bottom / var(--pct) 12px no-repeat,
+    repeating-linear-gradient(to right, var(--ink-3) 0 2px, transparent 2px 40px) left bottom / 100% 22px no-repeat,
+    repeating-linear-gradient(to right, var(--ink-3) 0 1px, transparent 1px 8px) left bottom / 100% 12px no-repeat;
+  outline-offset: 6px;
+}
+.scrub {
+  --needle: var(--accent);
+}
+.scrub input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 3px;
+  height: 44px;
+  border-radius: 0;
+  background: var(--needle);
+}
+.scrub input::-moz-range-thumb {
+  width: 3px;
+  height: 44px;
+  border: 0;
+  border-radius: 0;
+  background: var(--needle);
+}
+.np-foot {
+  order: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+/* ---------- topics (the library): pills, switch, show grid ---------- */
+.tpills {
+  display: flex;
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  gap: 6px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  margin: var(--space-4) calc(-1 * var(--space-4)) 0;
+  padding: 0 var(--space-4);
+  scroll-padding: 0 var(--space-4);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tpills {
+    scroll-behavior: auto;
+  }
+}
+.tpills.dragging {
+  scroll-behavior: auto;
+  cursor: grabbing;
+}
+.tpills.dragging .tpill {
+  pointer-events: none;
+}
+.tpills::-webkit-scrollbar {
+  display: none;
+}
+.tpill {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px 0 14px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink-3);
+  transition: background 0.15s, color 0.15s;
+}
+.tpill span {
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1;
+  /* Dirtyline's letters sit in the top 70% of the line box; nudge down 0.1em to centre them */
+  transform: translateY(0.1em);
+  white-space: nowrap;
+}
+.tpill .tglyph {
+  width: 18px;
+  height: 18px;
+  color: currentColor;
+}
+.tpill-on {
+  background: var(--panel);
+  color: var(--panel-ink);
+}
+.tlib-seg {
+  margin: var(--space-4) 0;
+}
+.tlib .showgrid {
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4) 10px;
+}
+/* ---------- today ---------- */
+.dayhead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin: var(--space-5) 0 var(--space-2);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.newcard {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: var(--space-3);
+  padding: 10px;
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  text-align: left;
+  width: 100%;
+}
+.newcard .art {
+  border-radius: 10px;
+}
+.newcard-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.newcard-title {
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: var(--text-s);
+  line-height: 1.3;
+}
+.newcard-show {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+}
+.newcard-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--ink-3);
+}
+
+/* ---------- playlists ---------- */
+/* No premade covers: Fog with a pixel mark, or the listener's own photo. */
+.plgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: var(--space-4);
+}
+.pcover {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 130px;
+  padding: 12px 12px 14px;
+  border-radius: 14px;
+  overflow: hidden;
+  text-align: left;
+  background: var(--panel) center / cover no-repeat;
+  color: var(--panel-ink);
+}
+.pcover:active {
+  filter: brightness(0.94);
+}
+.pcover-icon {
+  display: block;
+  min-height: 28px;
+  line-height: 0;
+}
+.pcover .tglyph {
+  width: 28px;
+  height: 28px;
+  color: currentColor;
+}
+.pcover h3 {
+  margin-top: auto;
+  font-size: 24px;
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+.pcover-feature {
+  grid-row: span 2;
+}
+.pcover-feature h3 {
+  font-size: 30px;
+}
+.pcover-wide {
+  grid-column: 1 / -1;
+}
+/* uploaded photo: white name and mark over a soft shade */
+.pcover-photo {
+  color: #ffffff;
+}
+.pcover-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.6), rgb(0 0 0 / 0) 55%),
+    linear-gradient(to bottom, rgb(0 0 0 / 0.3), rgb(0 0 0 / 0) 30%);
+}
+
+/* edit playlist sheet */
+.pledit-preview {
+  display: flex;
+  justify-content: center;
+}
+.pledit-preview .pcover {
+  width: 132px;
+  height: 176px;
+}
+.photo-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.photo-row label.btn {
+  cursor: pointer;
+}
+.photo-row:focus-within label.btn {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.sr-file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.glyphpick {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+.glyphpick button {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--panel-ink);
+}
+.glyphpick .tglyph {
+  width: 22px;
+  height: 22px;
+  color: currentColor;
+}
+.glyphpick .glyphpick-none {
+  font-family: var(--font-label);
+  font-size: 11px;
+  background: var(--surface-2);
+  color: var(--ink-2);
+}
+.glyphpick [aria-pressed='true'] {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+/* cover picker: Plain, the Tapedeck covers (public/covers/*.jpg), then Upload */
+.coverpick {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.coverpick > * {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--panel) center / cover no-repeat;
+  color: #ffffff;
+  text-align: left;
+}
+.coverpick > * span {
+  position: absolute;
+  left: 6px;
+  bottom: 5px;
+  font-family: var(--font-label);
+  font-size: 10.5px;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 0.7);
+}
+.coverpick .coverpick-plain {
+  color: var(--panel-ink);
+}
+.coverpick .coverpick-plain span {
+  text-shadow: none;
+}
+.coverpick [aria-pressed='true'] {
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+.coverpick-wide {
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+}
+
+/* ===== Tapedeck app additions, drawn from the same tokens ===== */
+
+/* pixel glyphs: default size (pills, covers and pickers set their own) */
+.tglyph {
+  display: block;
+  width: 26px;
+  height: 26px;
+}
+
+/* Today: the round-up is a full-width Fog card */
+.roundup-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px 14px;
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--panel-ink);
+  margin-top: var(--space-2);
+  min-height: 0;
+  gap: 8px;
+}
+.roundup-card h3 {
+  margin-top: 6px;
+  font-size: 30px;
+}
+.roundup-card .tcard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--panel-ink-2);
+}
+.roundup-card .tglyph {
+  color: var(--panel-ink-2);
+}
+.roundup-card .tcard-sub {
+  font-family: var(--font-label);
+  font-size: var(--text-s);
+  color: var(--panel-ink-2);
+}
+.roundup-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: 6px;
+}
+.roundup-card .btn-primary {
+  background: var(--panel-ink);
+  color: var(--panel);
+}
+.roundup-card .btn-ghost {
+  color: var(--panel-ink);
+  margin-left: auto;
+}
+.dayhead-actions {
+  display: flex;
+  gap: 2px;
+}
+.dayhead-actions .btn {
+  min-height: 28px;
+  padding: 0 8px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.newcard-wrap {
+  position: relative;
+}
+.newcard-wrap .newcard {
+  padding-right: 52px;
+}
+.newcard-play {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+}
+
+/* Topics: the feature card's show count */
+.tglyph-s {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+}
+
+/* Settings */
+.settings-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--panel);
+  color: var(--panel-ink);
+}
+
+/* Player extras: sleep timer, footer icons, notes, long titles */
+.np .error {
+  order: 2;
+}
+.np .notes {
+  order: 6;
+  margin-top: var(--space-3);
+}
+.np-text h2.np-long {
+  font-size: 28px;
+  line-height: 1.02;
+}
+.np-foot-icons {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.sleepbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: var(--radius-m);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  background: var(--tile);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.sleepbtn-on {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.mini-sleep {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Playlists: smart lists */
+.smartlists {
+  margin: var(--space-2) 0 var(--space-5);
+}
+.smart-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-s);
+  display: grid;
+  place-items: center;
+  background: var(--panel);
+  color: var(--panel-ink);
+}
+
+/* Finished episodes: low contrast, with a lime check beside the play button */
+.row-done .art img {
+  filter: grayscale(1) brightness(0.7);
+}
+.row-done .art {
+  opacity: 0.55;
+}
+.row-done .row-title {
+  color: var(--ink-3);
+  font-weight: 400;
+}
+.row-done .row-sub,
+.row-done .row-meta {
+  color: var(--ink-3);
+  opacity: 0.85;
+}
+.row-done .row-trail .iconbtn {
+  color: var(--ink-2);
+}
+.done-slot {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 44px;
+}
+.donemark {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--done);
+  color: var(--done-ink);
+}
+.donemark svg {
+  stroke-width: 3;
+}
+/* the dismiss check in the round-up uses the same colour as the play icon */
+.chip svg {
+  flex-shrink: 0;
+}
+
+/* Show cards in a topic: open the show, or quick actions behind ⋯ */
+.showcard-open {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  text-align: left;
+}
+.showcard-open:active .art {
+  transform: scale(0.97);
+}
+.showcard-when {
+  font-family: var(--font-label);
+  font-size: 11px;
+  color: var(--ink-3);
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.favmark {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.showcard-more {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+}
+.showcard-more .iconbtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgb(34 34 34 / 0.72);
+  color: var(--ink);
+  backdrop-filter: blur(6px);
+}
+.np-foot {
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+
+/* favourite heart in the show's top bar: filled lilac when on */
+.favbtn-on .iconbtn {
+  color: var(--accent-text);
+}
+.favbtn-on svg path {
+  fill: currentColor;
+}
+
+/* Topics: the pills sit right under the title */
+.tlib .tpills {
+  margin-top: var(--space-2);
+}
+.tlib .showcard-open .art {
+  border-radius: 10px;
+}
+
+/* artwork without an image: the library's tones */
+.art-lilac {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.art-fog {
+  background: var(--panel);
+  color: var(--panel-ink);
+}
+.art-metal {
+  background: var(--metal);
+  color: var(--chill-black);
+}
+
+/* show grid: the artwork fills its column */
+.showcard .art-wrap {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+.showcard .art-wrap > .showcard-open {
+  width: 100%;
+}
+
+/* offline: a small green arrow when an episode is saved on the phone */
+.dl-mark {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink-2);
+}
+.dl-saved {
+  color: var(--success);
+}
+
+/* a new version is live: tap to load it */
+.update-banner {
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  top: calc(env(safe-area-inset-top, 0px) + 8px);
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--success);
+  color: var(--on-success);
+  font-family: var(--font-label);
+  font-size: var(--text-s);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.4);
+}
+.update-banner b {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* not listened yet: a quiet ring you can tap to mark it as listened */
+.markring {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px var(--ink-3);
+  color: var(--ink-3);
+}
+.markring svg {
+  opacity: 0;
+  stroke-width: 3;
+}
+.done-slot:active .markring svg {
+  opacity: 1;
+}
+button.done-slot {
+  cursor: pointer;
+}
+
+/* episode titles (player and episode menu) are set in Alef, like every podcast and episode title;
+   Dirtyline stays for screen, topic, series and playlist names */
+.np-text h2.ep-title,
+.sheet-head h2.ep-title {
+  font-family: var(--font-label);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+.np-text h2.ep-title {
+  font-size: 26px;
+}
+.np-text h2.ep-title.np-long {
+  font-size: 21px;
+}
+.sheet-head h2.ep-title {
+  font-size: 20px;
+}
+
+/* round-up rows: a small × to take an episode off today's list */
+.dismiss-slot .iconbtn {
+  width: 32px;
+  color: var(--ink-3);
+}
+
+/* player, rearranged: cover centred at the top, then the episode title, times, the three tiles,
+   the ruler, and the footer (speed, sleep, boost, Up Next, more) */
+.np > .art {
+  order: 0;
+  align-self: center;
+  width: min(72%, 34vh) !important;
+  margin: var(--space-5) 0 var(--space-3);
+}
+.np-text {
+  order: 1;
+}
+.np-text .eyebrow,
+.np-text p {
+  display: none;
+}
+.np-text h2.ep-title,
+.np-text h2.ep-title.np-long {
+  padding-right: 0;
+  font-size: 20px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.np-foot {
+  justify-content: flex-start;
+}
+.np-foot-icons {
+  margin-left: auto;
+  display: flex;
+}
+.np > .notes {
+  order: 6;
+  margin-top: var(--space-3);
+}
+
+/* room for the Dirtyline swash on the first letter, which the title clipping cut off */
+.topbar h1 { padding-left: 0.2em; }
+
+/* light look: the few spots that don't use the tokens */
+:root[data-theme='light'] .mini .pbar { background: rgb(20 19 24 / 0.14); }
+:root[data-theme='light'] .showcard-more .iconbtn { background: rgb(255 255 255 / 0.82); }
+/* light look, player: white side tiles so the lilac play tile stands out */
+:root[data-theme='light'] .np-controls .iconbtn:not(.iconbtn-filled) { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); }

@@ -1,0 +1,127 @@
+/*
+ * Tapedeck design tokens.
+ * Palette: Chill Black #222222 (always the ground), Misty Lilac #C8C3DA (accent),
+ * Fog #DEDEDB (text and cards), neutral greys, brushed metal on the Today button.
+ * Titles: Dirtyline. Labels: Alef. Body: Figtree.
+ * Dark (Chill Black) is the default; a light look can be chosen in Settings → Look.
+ */
+
+@font-face {
+  font-family: 'Dirtyline';
+  /* woff and ttf copies too: a phone that can't read one format moves on to the next */
+  src: url('./fonts/Dirtyline.woff2') format('woff2'), url('./fonts/Dirtyline.woff') format('woff'), url('./fonts/Dirtyline.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --chill-black: #222222;
+  --misty-lilac: #c8c3da;
+  --fog: #dededb;
+
+  --font-display: 'Dirtyline', 'Figtree', system-ui, sans-serif;
+  --font-label: 'Alef', 'Figtree', system-ui, sans-serif;
+  --font-body: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --bg: #222222;
+  --surface: #2d2d2d;
+  --surface-2: #3a3a3a;
+  --tile: #4a4a4a;
+  --ink: #dededb;
+  --ink-2: #a8a6ae;
+  --ink-3: #85838c;
+  --line: rgb(222 222 219 / 0.1);
+  --accent: #c8c3da;
+  --accent-ink: #222222;
+  --accent-soft: #3b3945;
+  --accent-text: #c8c3da; /* lilac for text and icons on the ground */
+  --progress: #c8c3da;
+  --danger: #ae344c; /* errors, delete, remove */
+  --on-danger: #ffffff;
+  --success: #5f9349; /* saved, added, done */
+  --on-success: #222222;
+  /* finished episodes use the success green */
+  --done: var(--success);
+  --done-ink: var(--on-success);
+  --patreon: #c8c3da;
+  --patreon-soft: transparent;
+  --inverse-bg: #c8c3da;
+  --inverse-ink: #222222;
+  --knob-off: #85838c;
+  --knob-on: #222222;
+
+  /* topic cards */
+  --panel: #dededb;
+  --panel-2: #cfcfcc;
+  --panel-ink: #222222;
+  --panel-ink-2: #5d5d5b;
+  /* brushed metal, used for the Today button */
+  --metal: radial-gradient(circle at 50% 50%, rgb(255 255 255 / 0.55), transparent 58%),
+    conic-gradient(from 20deg, #f2f2f0, #9d9d9b, #e9e9e7, #8c8c8a, #f4f4f2, #a3a3a1, #ededeb, #909090, #f2f2f0);
+
+  /* mini player */
+  --mini-bg: #474747;
+
+  /* bottom bar */
+  --bar-fade: linear-gradient(to bottom, rgb(34 34 34 / 0), rgb(34 34 34 / 0.92) 40%, #222222);
+
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 22px;
+  --shadow-sheet: 0 -8px 32px rgb(0 0 0 / 0.5);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --text-xs: 12px;
+  --text-s: 14px;
+  --text-m: 16px;
+  --text-l: 22px;
+  --text-xl: 40px;
+
+  --tabbar-h: 92px;
+  --mini-h: 52px;
+  color-scheme: dark;
+  font-synthesis: none;
+}
+
+
+/* Light: chosen in Settings → Look. Lilac Mist carries the interface (cards, mini player, tiles),
+   text is near-black for higher contrast, and green and red are brighter. */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f3f1f8;
+  --surface: #ffffff;
+  --surface-2: #e7e3f1;
+  --tile: #dcd7ea;
+  --ink: #141318;
+  --ink-2: #3a3744;
+  --ink-3: #5a5666;
+  --line: rgb(20 19 24 / 0.14);
+  --accent: #c8c3da;
+  --accent-ink: #141318;
+  --accent-soft: #e4e0f0;
+  --accent-text: #5b4f9a;
+  --progress: #6a5ea6;
+  --danger: #e3173f;
+  --on-danger: #ffffff;
+  --success: #2bb540;
+  --on-success: #0b1a0e;
+  --patreon: #6a5ea6;
+  --inverse-bg: #222222;
+  --inverse-ink: #f3f1f8;
+  --knob-off: #8a85a0;
+  --knob-on: #141318;
+  --panel: #c8c3da;
+  --panel-2: #b8b2cf;
+  --panel-ink: #141318;
+  --panel-ink-2: #433e58;
+  --mini-bg: #c8c3da;
+  --bar-fade: linear-gradient(to bottom, rgb(243 241 248 / 0), rgb(243 241 248 / 0.94) 40%, #f3f1f8);
+  --shadow-sheet: 0 -8px 32px rgb(40 30 80 / 0.18);
+}
