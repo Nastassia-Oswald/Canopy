@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "emitDeclarationOnly": true,
+    "noEmit": false,
+    "outDir": "node_modules/.tsc/server",
+    "lib": [
+      "ES2022"
+    ],
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+    "server",
+    "shared",
+    "tests"
+  ]
+}

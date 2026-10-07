@@ -1,0 +1,10 @@
+{
+  "name": "Canopy — road trip planner",
+  "short_name": "Canopy",
+  "description": "Cheapest fuel, rest stops, food and stays along your route.",
+  "start_url": "/#/setup",
+  "display": "standalone",
+  "background_color": "#D8DAD6",
+  "theme_color": "#D8DAD6",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
