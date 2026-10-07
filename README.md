@@ -11,7 +11,7 @@ Road-trip planner that finds the cheapest fuel, rest stops, food and places to s
 
 ## Run it
 
-Requires **Node 20+**.
+Requires **Node 22+**.
 
 ```bash
 npm install
@@ -29,7 +29,21 @@ npm run build             # type-checks, then builds the web app into dist/
 npm start                 # one server on :8787 serving the API and the app
 ```
 
-Other scripts: `npm test` (parsers + geo unit tests), `npm run typecheck`.
+Other scripts: `npm test` (parsers + geo unit tests), `npm run typecheck`, `npm run check` (all three).
+
+## Deploy to Vercel
+
+1. Push this folder to GitHub (the repo should contain only these files — see *Project layout*).
+2. In Vercel: **Add New → Project →** import the repo. Leave the settings as they are (`vercel.json` sets them).
+3. Optional: add `CONTACT_EMAIL`, `TANKERKOENIG_API_KEY`, `OVERPASS_URL` etc. under **Settings → Environment Variables**.
+
+How it works: `npm run build` builds the web app, then `scripts/build-vercel.mjs` bundles the Express API into one
+serverless function and writes Vercel's [Build Output API](https://vercel.com/docs/build-output-api/v3) folder
+(`.vercel/output`). `/api/*` goes to the function, everything else is the app.
+
+Limits on Vercel: each function instance keeps its own cache, so the first request after a cold start downloads the
+fuel feeds again (~5–15 s); cleanliness reports are kept in `/tmp` and are lost when an instance is recycled — use a
+database (e.g. Vercel Postgres / Neon / Supabase) before launch.
 
 ## Screens
 
@@ -73,7 +87,9 @@ Other scripts: `npm test` (parsers + geo unit tests), `npm run typecheck`.
 
 ```
 server/
-  index.ts            Express API: /api/route, /api/fuel, /api/fuel/nearby, /api/places, /api/reports, /api/sources
+  app.ts              Express API: /api/route, /api/fuel, /api/fuel/nearby, /api/places, /api/reports, /api/sources
+  index.ts            local / production Node server (serves dist/ too)
+  vercel.ts           Vercel function entry
   providers/          france.ts, spain.ts, italy.ts, germany.ts, uk.ts (+ registry, caching, status)
   osm.ts              Overpass queries (rest areas, food, hotels, roads, station names)
   routing.ts          OSRM routing + Nominatim search
@@ -86,4 +102,6 @@ src/
   components/ui.tsx   cards, pills, nav bar, notices
   lib/                api client, store (localStorage), router, formatting
 tests/                vitest
+scripts/build-vercel.mjs  Vercel packaging
+vercel.json
 ```

@@ -8,7 +8,9 @@ import { join } from 'node:path';
 import type { Report, ReportStatus } from '../shared/types.ts';
 import { ROOT } from './util.ts';
 
-const DIR = join(ROOT, 'server', 'data');
+// Serverless hosts (Vercel) have a read-only file system except /tmp — and /tmp is not shared
+// between instances, so use a real database before launch.
+const DIR = process.env.VERCEL ? '/tmp/canopy' : join(ROOT, 'server', 'data');
 const FILE = join(DIR, 'reports.json');
 const KEEP_MS = 30 * 24 * 3600_000;
 /** Reports older than this no longer show on cards. */
